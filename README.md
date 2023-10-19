@@ -1,5 +1,5 @@
 # Santander Dev Week 2023 Lab Spring
-Lab project in Spring Boot
+RestFul Api developed for a DIO Bootcamp
 
 ## Class Diagram
 ```mermaid
@@ -40,9 +40,9 @@ Lab project in Spring Boot
         + News(icon: String, description: String)
     }
 
-    User --> Account
-    User --> Feature
-    User --> Card
-    User --> News
+    User "1" *-- "1" Account
+    User "1" *-- "N" Feature
+    User "1" *-- "1" Card
+    User "1" *-- "N" News
 
 ```
