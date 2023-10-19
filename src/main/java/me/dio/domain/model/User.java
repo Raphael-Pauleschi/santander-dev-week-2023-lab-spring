@@ -1,21 +1,31 @@
 package me.dio.domain.model;
 
+import java.util.List;
+
 public class User {
 	private Long id;
 	private String name;
 	private Account account;
-	private Feature[] feature;
 	private Card card;
-	private News[] news;
+	private List<Feature> features;
+	private List<News> news;
 	
-	public User(Long id, String name, Account account, Feature[] feature, Card card, News[] news) {
+	
+	
+	public User(Long id, String name, Account account, Card card, List<Feature> features, List<News> news) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.account = account;
-		this.feature = feature;
 		this.card = card;
+		this.features = features;
 		this.news = news;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -29,27 +39,27 @@ public class User {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	public Feature[] getFeature() {
-		return feature;
-	}
-	public void setFeature(Feature[] feature) {
-		this.feature = feature;
-	}
 	public Card getCard() {
 		return card;
 	}
 	public void setCard(Card card) {
 		this.card = card;
 	}
-	public News[] getNews() {
+	public List<Feature> getFeatures() {
+		return features;
+	}
+	public void setFeatures(List<Feature> features) {
+		this.features = features;
+	}
+	public List<News> getNews() {
 		return news;
 	}
-	public void setNews(News[] news) {
+	public void setNews(List<News> news) {
 		this.news = news;
 	}
-	public Long getId() {
-		return id;
-	}
+	
+	
+	
 	
 	
 	

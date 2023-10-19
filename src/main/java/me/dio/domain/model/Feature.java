@@ -5,6 +5,7 @@ public class Feature {
 	private String icon;
 	private String description;
 	
+
 	public Feature(Long id, String icon, String description) {
 		super();
 		this.id = id;
@@ -32,6 +33,8 @@ public class Feature {
 		return id;
 	}
 	
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 }
