@@ -2,6 +2,8 @@ package me.dio.domain.model.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 import me.dio.domain.model.Feature;
@@ -9,6 +11,8 @@ import me.dio.domain.model.News;
 import me.dio.domain.model.User;
 
 public class UserDTO {
+	@JsonIgnore
+	private Long id;
 	private String name;
 	private AccountDTO account;
 	private CardDTO card;
@@ -18,7 +22,9 @@ public class UserDTO {
 
 	public User toModel() {
 	    User userToModel = new User();
-	    
+	    if (id != null) {
+			userToModel.setId(id);
+		}
 	    userToModel.setName(name);
 	    userToModel.setCard(card.toModel());
 	    userToModel.setAccount(account.toModel());
@@ -80,4 +86,11 @@ public class UserDTO {
 		this.news = news;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
