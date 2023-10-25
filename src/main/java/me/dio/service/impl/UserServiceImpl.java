@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import me.dio.domain.model.User;
+import me.dio.domain.model.dto.UserDTO;
 import me.dio.domain.repository.UserRepository;
 import me.dio.service.UserService;
 
@@ -49,5 +50,20 @@ public class UserServiceImpl implements UserService{
 			throw new IllegalArgumentException("This user ID doesn't exists");
 		}
 		
+	}
+	
+	@Transactional
+	@Override
+	public User update(Long id, UserDTO userChanges) {
+		User userData = this.findById(id);
+		
+		userChanges.getAccount().setId(userData.getAccount().getId());
+		userChanges.getCard().setId(userData.getCard().getId());		
+		userData.setAccount(userChanges.getAccount().toModel());
+		userData.setCard(userChanges.getCard().toModel());
+		userData.setName(userChanges.getName());
+
+		
+		return userRepository.save(userData);
 	}
 }
