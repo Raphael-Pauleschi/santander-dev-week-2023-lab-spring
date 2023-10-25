@@ -3,6 +3,7 @@ package me.dio.controller;
 import java.net.URI;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,12 +33,22 @@ public class UserController {
 	}
 	
 	 @PostMapping
-	    public ResponseEntity<User> create(@RequestBody UserDTO userToCreate) {
-	        var userCreated = userService.create(userToCreate.toModel());
+	 public ResponseEntity<User> create(@RequestBody UserDTO userToCreate) {
+	        User userCreated = userService.create(userToCreate.toModel());
+	       
 	        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 	                .path("/{id}")
 	                .buildAndExpand(userCreated.getId())
 	                .toUri();
 	        return ResponseEntity.created(location).body(userCreated);
-	    }
+	 }
+	 
+	 
+	 @DeleteMapping("/{id}")
+	 public ResponseEntity<?> delete(@PathVariable long id) {
+		 userService.delete(id);
+		 
+		 return ResponseEntity.noContent().build();
+		 
+	 }
 }

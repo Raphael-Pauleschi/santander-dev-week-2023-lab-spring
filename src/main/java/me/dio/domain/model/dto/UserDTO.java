@@ -18,6 +18,7 @@ public class UserDTO {
 
 	public User toModel() {
 	    User userToModel = new User();
+	    System.out.println(userToModel.getId());
 	    
 	    userToModel.setName(name);
 	    userToModel.setCard(card.toModel());
