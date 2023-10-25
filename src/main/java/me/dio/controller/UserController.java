@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import me.dio.domain.model.User;
+import me.dio.domain.model.dto.UserDTO;
 import me.dio.service.UserService;
 
 @RestController
@@ -31,8 +32,8 @@ public class UserController {
 	}
 	
 	 @PostMapping
-	    public ResponseEntity<User> create(@RequestBody User userToCreate) {
-	        var userCreated = userService.create(userToCreate);
+	    public ResponseEntity<User> create(@RequestBody UserDTO userToCreate) {
+	        var userCreated = userService.create(userToCreate.toModel());
 	        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 	                .path("/{id}")
 	                .buildAndExpand(userCreated.getId())

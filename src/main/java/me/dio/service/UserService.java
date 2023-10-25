@@ -4,6 +4,6 @@ import me.dio.domain.model.User;
 
 public interface UserService {
 	User findbyId(Long id);
-	User create(User user);
+	User create(User userToCreate);
 	
 }
