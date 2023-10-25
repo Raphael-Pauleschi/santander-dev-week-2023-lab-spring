@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
 import me.dio.domain.model.User;
+import me.dio.domain.model.dto.UserDTO;
 import me.dio.domain.repository.UserRepository;
 import me.dio.service.UserService;
 
@@ -24,14 +25,22 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User create(User userToCreate) {
-		if(userToCreate == null && userRepository.existsById(userToCreate.getId())) {
+	public User create(UserDTO userToCreate) {
+		if(userToCreate == null) {
 			throw new IllegalArgumentException("This user ID alrealdy exists");
 		}
 		else if(userRepository.existsByAccountNumber(userToCreate.getAccount().getNumber())) {
 			throw new IllegalArgumentException("This Account Number alrealdy exists");
 		}
-		return userRepository.save(userToCreate);
+		
+		User user = new User(
+						userToCreate.getName(),
+						userToCreate.getAccount(),
+						userToCreate.getCard(),
+						userToCreate.getFeatures(),
+						userToCreate.getNews());
+		
+		return userRepository.save(user);
 		
 	}
 
