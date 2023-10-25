@@ -28,27 +28,23 @@ public class UserController {
 	//nota criar DTO
 	@GetMapping("/{id}")
 	public ResponseEntity<User> findById(@PathVariable long id){
-		var user = userService.findbyId(id);
+		var user = userService.findById(id);
 		return ResponseEntity.ok(user);
 	}
 	
 	 @PostMapping
 	 public ResponseEntity<User> create(@RequestBody UserDTO userToCreate) {
-	        User userCreated = userService.create(userToCreate.toModel());
-	       
-	        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-	                .path("/{id}")
+		 var userCreated = userService.create(userToCreate.toModel());
+		 URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+	         .path("/{id}")
 	                .buildAndExpand(userCreated.getId())
 	                .toUri();
-	        return ResponseEntity.created(location).body(userCreated);
+	   return ResponseEntity.created(location).body(userCreated);
 	 }
 	 
-	 
 	 @DeleteMapping("/{id}")
-	 public ResponseEntity<?> delete(@PathVariable long id) {
+	 public ResponseEntity<Void> deleteById(@PathVariable long id){
 		 userService.delete(id);
-		 
 		 return ResponseEntity.noContent().build();
-		 
 	 }
 }
