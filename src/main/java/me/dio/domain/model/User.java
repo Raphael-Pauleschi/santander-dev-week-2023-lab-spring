@@ -32,15 +32,6 @@ public class User {
 	private List<News> news;
 	
 	
-	
-	public User(String name, Account account, Card card, List<Feature> features, List<News> news) {
-		super();
-		this.name = name;
-		this.account = account;
-		this.card = card;
-		this.features = features;
-		this.news = news;
-	}
 	public Long getId() {
 		return id;
 	}
