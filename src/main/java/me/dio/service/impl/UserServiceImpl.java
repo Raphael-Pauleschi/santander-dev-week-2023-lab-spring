@@ -1,5 +1,6 @@
 package me.dio.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +26,12 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findById(id)
 				.orElseThrow(NoSuchElementException::new);
 	}
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> FindAll() {
+    	return userRepository.findAll();
+    }
 
 	@Transactional
 	@Override

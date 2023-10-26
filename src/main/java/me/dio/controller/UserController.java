@@ -1,6 +1,7 @@
 package me.dio.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +27,12 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-	//nota criar DTO
+	@GetMapping
+	public ResponseEntity<List<User>> findAll(){
+		List<User> users = userService.FindAll();
+		return ResponseEntity.ok(users);
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<User> findById(@PathVariable long id){
 		var user = userService.findById(id);
