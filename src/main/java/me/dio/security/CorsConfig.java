@@ -14,7 +14,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedHeaders("*");
         
         registry.addMapping("/**")
-        		.allowedOrigins("https://raphael-pauleschi.github.io/sdw-2023-front_end")
+        		.allowedOrigins("https://raphael-pauleschi.github.io")
         		.allowedMethods("GET", "POST", "PUT", "DELETE")
         		.allowedHeaders("*");
     }
